@@ -44,8 +44,7 @@ GLuint createShaderProgram(const char *vertexShaderSource,
 	if (printShaderErrors(vert, "Vertex") | printShaderErrors(frag, "Fragment"))
 		return 0;
 	auto prog = glCreateProgram();
-	glAttachShader(prog, vert);
-	glAttachShader(prog, frag);
+	attachShaders(prog, vert, frag);
 	glLinkProgram(prog);
 	return prog;
 }
@@ -63,4 +62,21 @@ void squareViewportGLFWCallback(GLFWwindow *win, int, int) {
 	int w, h;
 	glfwGetFramebufferSize(win, &w, &h);
 	squareViewport(w, h);
+}
+
+GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
+		const char *windowName) {
+	if (!glfwInit())
+		return nullptr;
+	GLFWwindow *win = glfwCreateWindow(windowWidth, windowHeight, windowName,
+			nullptr, nullptr);
+	if (!win)
+		return nullptr;
+	glfwMakeContextCurrent(win);
+	if (glewInit() != GLEW_OK) {
+		return nullptr;
+		glfwDestroyWindow(win);
+	}
+	return win;
+
 }

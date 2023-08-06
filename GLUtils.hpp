@@ -43,7 +43,7 @@ GLuint createShaderProgram(const char*, const char*);
 template<typename ... Shader>
 inline void attachShaders(GLuint program, Shader ... shaders) {
 static_assert((std::is_same_v<GLuint, Shader> && ...));
-(glAttachShader(shaders), ...);
+(glAttachShader(program, shaders), ...);
 }
 
 /*
@@ -59,5 +59,15 @@ void squareViewport(int windowWidth, int windowHeight);
  * This function simply calls squareViewport with the window's framebuffer's width and height.
  */
 void squareViewportGLFWCallback(GLFWwindow*, int, int);
+
+/*
+ * Initializes GLFW, creates a GLFW window, and initializes GLEW.
+ * This function returns a pointer to the created GLFW window upon completion.
+ *
+ * This function checks for failure when initializing GLFW, creating the window, and initializing GLEW.
+ * If any are detected, this function returns a null pointer.
+ * If a failure is detected and the window has already been created (successfully), this function destroys the window before returning a null pointer.
+ */
+GLFWwindow* initOpenGL(int, int, const char*);
 
 #endif /* GLUTILS_HPP_ */
