@@ -16,18 +16,17 @@
  * Creates a shader with the specified type and source code, and compiles it.
  * Errors can be checked for with checkShadercompilationError(GLuint).
  */
-GLuint createShader(GLenum shaderType, const char *source);
+GLuint createShader(GLenum shaderType, const char*);
 /*
  * Checks if there are shader errors.
  * Returns true if there are and false otherwise.
  */
-bool checkShaderCompilationError(GLuint shader);
+bool checkShaderCompilationError(GLuint);
 
 /*
  * Attaches each of the provided shaders to the provided program via glAttachShader.
  */
-template<typename ...Shader> void attachShaders(GLuint program,
-		Shader ...shaders);
+template<typename ...Shader> void attachShaders(GLuint, Shader ...);
 
 /*
  * Creates a shader program with the provided vertex and fragment shader code.
@@ -39,13 +38,12 @@ template<typename ...Shader> void attachShaders(GLuint program,
  * The program is not set to be used with glUseProgram.
  * This must be done by the caller, if desired.
  */
-GLuint createShaderProgram(const char *vertexShaderSource,
-		const char *fragmentShaderSource);
+GLuint createShaderProgram(const char*, const char*);
 
 template<typename ... Shader>
 inline void attachShaders(GLuint program, Shader ... shaders) {
-	static_assert((std::is_same_v<GLuint, Shader> && ...));
-	(glAttachShader(shaders), ...);
+static_assert((std::is_same_v<GLuint, Shader> && ...));
+(glAttachShader(shaders), ...);
 }
 
 /*
@@ -54,5 +52,12 @@ inline void attachShaders(GLuint program, Shader ... shaders) {
  * The size and location of the square are calculated from the provided windowWidth and windowHeight.
  */
 void squareViewport(int windowWidth, int windowHeight);
+
+/*
+ * A callback function that can be provided to glfwSetWindowSizeCallback.
+ * This function will resize the viewport to be the largest fitting square any time the application window's size changes.
+ * This function simply calls squareViewport with the window's framebuffer's width and height.
+ */
+void squareViewportGLFWCallback(GLFWwindow*, int, int);
 
 #endif /* GLUTILS_HPP_ */

@@ -58,3 +58,9 @@ void squareViewport(int windowWidth, int windowHeight) {
 		glViewport(0, (windowHeight - windowWidth) / 2, windowWidth,
 				windowWidth);
 }
+
+void squareViewportGLFWCallback(GLFWwindow *win, int, int) {
+	int w, h;
+	glfwGetFramebufferSize(win, &w, &h);
+	squareViewport(w, h);
+}
