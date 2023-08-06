@@ -19,3 +19,33 @@ bool checkShaderCompilationError(GLuint shader) {
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	return success;
 }
+
+namespace {
+/*
+ * Prints shader errors.
+ * Returns true if errors were found and printed.
+ */
+bool printShaderErrors(GLuint shader, const char *shaderType) {
+	if (checkShaderCompilationError(shader)) {
+		char errlog[512];
+		glGetShaderInfoLog(shader, 512, NULL, errlog);
+		std::cout << shaderType << " shader compilation error: \n" << errlog
+				<< std::endl;
+		return true;
+	}
+	return false;
+}
+}
+
+GLuint createShaderProgram(const char *vertexShaderSource,
+		const char *fragmentShaderSource) {
+	auto vert = createShader(GL_VERTEX_SHADER, vertexShaderSource), frag =
+			createShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
+	if (printShaderErrors(vert, "Vertex") | printShaderErrors(frag, "Fragment"))
+		return nullptr;
+	auto prog = glCreateProgram();
+	glAttachShader(prog, vert);
+	glAttachShader(prog, frag);
+	glLinkProgram(prog);
+	return prog;
+}
