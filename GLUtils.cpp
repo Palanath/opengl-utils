@@ -49,3 +49,12 @@ GLuint createShaderProgram(const char *vertexShaderSource,
 	glLinkProgram(prog);
 	return prog;
 }
+
+void squareViewport(int windowWidth, int windowHeight) {
+	if (windowWidth > windowHeight)
+		glViewport((windowWidth - windowHeight) / 2, 0, windowHeight,
+				windowHeight);
+	else
+		glViewport(0, (windowHeight - windowWidth) / 2, windowWidth,
+				windowWidth);
+}

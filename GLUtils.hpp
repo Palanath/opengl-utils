@@ -48,4 +48,11 @@ inline void attachShaders(GLuint program, Shader ... shaders) {
 	(glAttachShader(shaders), ...);
 }
 
+/*
+ * Sets the OpenGL viewport to the largest fitting square centered within the application window.
+ *
+ * The size and location of the square are calculated from the provided windowWidth and windowHeight.
+ */
+void squareViewport(int windowWidth, int windowHeight);
+
 #endif /* GLUTILS_HPP_ */
