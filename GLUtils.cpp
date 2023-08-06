@@ -42,7 +42,7 @@ GLuint createShaderProgram(const char *vertexShaderSource,
 	auto vert = createShader(GL_VERTEX_SHADER, vertexShaderSource), frag =
 			createShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 	if (printShaderErrors(vert, "Vertex") | printShaderErrors(frag, "Fragment"))
-		return nullptr;
+		return 0;
 	auto prog = glCreateProgram();
 	glAttachShader(prog, vert);
 	glAttachShader(prog, frag);

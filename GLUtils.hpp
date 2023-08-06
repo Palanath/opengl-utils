@@ -24,6 +24,12 @@ GLuint createShader(GLenum shaderType, const char *source);
 bool checkShaderCompilationError(GLuint shader);
 
 /*
+ * Attaches each of the provided shaders to the provided program via glAttachShader.
+ */
+template<typename ...Shader> void attachShaders(GLuint program,
+		Shader ...shaders);
+
+/*
  * Creates a shader program with the provided vertex and fragment shader code.
  * The vertex and fragment shaders are created, compiled, and bound to the program, then deleted after the program is finished being created.
  *
@@ -35,5 +41,11 @@ bool checkShaderCompilationError(GLuint shader);
  */
 GLuint createShaderProgram(const char *vertexShaderSource,
 		const char *fragmentShaderSource);
+
+template<typename ... Shader>
+inline void attachShaders(GLuint program, Shader ... shaders) {
+	static_assert((std::is_same_v<GLuint, Shader> && ...));
+	(glAttachShader(shaders), ...);
+}
 
 #endif /* GLUTILS_HPP_ */
