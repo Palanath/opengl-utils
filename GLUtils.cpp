@@ -75,13 +75,26 @@ GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
 		return nullptr;
 		glfwDestroyWindow(win);
 	}
-	glEnable(GL_DEBUG_OUTPUT);
+	if (enableDebug) {
+		glEnable(GL_DEBUG_OUTPUT);
+		glDebugMessageCallback(glDebugCallback, 0);
+	}
 	return win;
 
 }
 
-void squareViewport(GLFWwindow* win) {
+void squareViewport(GLFWwindow *win) {
 	int w, h;
 	glfwGetFramebufferSize(win, &w, &h);
 	squareViewport(w, h);
+}
+
+void GLAPIENTRY glDebugCallback(GLenum source, GLenum type, GLuint id,
+		GLenum severity, GLsizei length, const GLchar *message,
+		const void *userParam) {
+	std::cerr << "GL-DEBUG: ";
+	if (type == GL_DEBUG_TYPE_ERROR)
+		std::cerr << "Error: ";
+	std::cerr << "[type=" << type << ", severity=" << severity << "] "
+			<< message << std::endl;
 }

@@ -79,4 +79,7 @@ void squareViewportGLFWCallback(GLFWwindow*, int, int);
  */
 GLFWwindow* initOpenGL(int, int, const char*, bool = true);
 
+void GLAPIENTRY glDebugCallback(GLenum, GLenum, GLuint, GLenum, GLsizei,
+	const GLchar*, const void*);
+
 #endif /* GLUTILS_HPP_ */
