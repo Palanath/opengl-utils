@@ -65,7 +65,7 @@ void squareViewportGLFWCallback(GLFWwindow *win, int, int) {
 }
 
 GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
-		const char *windowName) {
+		const char *windowName, bool enableDebug) {
 	if (!glfwInit())
 		return nullptr;
 	GLFWwindow *win = glfwCreateWindow(windowWidth, windowHeight, windowName,
@@ -77,6 +77,7 @@ GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
 		return nullptr;
 		glfwDestroyWindow(win);
 	}
+	glEnable(GL_DEBUG_OUTPUT);
 	return win;
 
 }

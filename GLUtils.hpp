@@ -63,11 +63,12 @@ void squareViewportGLFWCallback(GLFWwindow*, int, int);
 /*
  * Initializes GLFW, creates a GLFW window, and initializes GLEW.
  * This function returns a pointer to the created GLFW window upon completion.
+ * If enableDebug is true, this function will enable GL_DEBUG_OUTPUT.
  *
  * This function checks for failure when initializing GLFW, creating the window, and initializing GLEW.
  * If any are detected, this function returns a null pointer.
  * If a failure is detected and the window has already been created (successfully), this function destroys the window before returning a null pointer.
  */
-GLFWwindow* initOpenGL(int, int, const char*);
+GLFWwindow* initOpenGL(int, int, const char*, bool = true);
 
 #endif /* GLUTILS_HPP_ */
