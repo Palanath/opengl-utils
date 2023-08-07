@@ -49,6 +49,14 @@ static_assert((std::is_same_v<GLuint, Shader> && ...));
 /*
  * Sets the OpenGL viewport to the largest fitting square centered within the application window.
  *
+ * The window width and height are determined through glfwGetFramebufferSize.
+ * The values obtained through calling glfwGetFramebufferSize are provided to squareViewport(int, int)
+ */
+void squareViewport(GLFWwindow*);
+
+/*
+ * Sets the OpenGL viewport to the largest fitting square centered within the application window.
+ *
  * The size and location of the square are calculated from the provided windowWidth and windowHeight.
  */
 void squareViewport(int windowWidth, int windowHeight);

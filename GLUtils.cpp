@@ -59,9 +59,7 @@ void squareViewport(int windowWidth, int windowHeight) {
 }
 
 void squareViewportGLFWCallback(GLFWwindow *win, int, int) {
-	int w, h;
-	glfwGetFramebufferSize(win, &w, &h);
-	squareViewport(w, h);
+	squareViewport(win);
 }
 
 GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
@@ -80,4 +78,10 @@ GLFWwindow* initOpenGL(int windowWidth, int windowHeight,
 	glEnable(GL_DEBUG_OUTPUT);
 	return win;
 
+}
+
+void squareViewport(GLFWwindow* win) {
+	int w, h;
+	glfwGetFramebufferSize(win, &w, &h);
+	squareViewport(w, h);
 }
