@@ -10,14 +10,14 @@
 GLuint createShader(GLenum shaderType, const char *source) {
 	GLuint res = glCreateShader(shaderType);
 	glShaderSource(res, 1, &source, nullptr);
-	glCompileShader(shaderType);
+	glCompileShader(res);
 	return res;
 }
 
 bool checkShaderCompilationError(GLuint shader) {
 	int success;
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-	return success;
+	return !success;
 }
 
 namespace {
