@@ -29,6 +29,15 @@ unsigned Model::addData(float data[], int dataSize) {
 	return vbos.size() - 1;
 }
 
+/*
+ * Specifies one of the attributes.
+ *
+ * The first parameter is the layout location of the attribute.
+ * The second is the vboIndex, i.e., the value returned by the call to addData(float[], int) which specified the VBO containing the data of the attribute being specified.
+ * The third paarameter is the number of components in the attribute. For a 2D float position, this will be 2.
+ * The fourth parameter is the stride between the same component in two adjacent vertices' attributes, specified in floats.
+ * The fifth parameter is the position of the first vertex's attribute. The position is given in floats.
+ */
 void Model::specifyAttribute(unsigned attribLayoutLoc, unsigned vboIndex,
 		unsigned components, unsigned attributeFloatStride,
 		unsigned firstAttributeFloatOffset) {
