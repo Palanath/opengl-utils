@@ -82,6 +82,19 @@ GLFWwindow* initOpenGL(int, int, const char*, bool = true);
 void GLAPIENTRY glDebugCallback(GLenum, GLenum, GLuint, GLenum, GLsizei,
 	const GLchar*, const void*);
 
-unsigned queryMaxUniformBlockSize();
+/*
+ * Invokes glGetIntegerv with the provided endpointName as the first argument and the reference of a local variable of type U declared in the function as the second argument:
+ *
+ * U val;
+ * glGetIntegerv(endpointName, &val);
+ *
+ * The result stored into val by the call is returned.
+ */
+template<typename U>
+inline U query(GLenum endpointName) {
+U val;
+glGetIntegerv(endpointName, &val);
+return val;
+}
 
 #endif /* GLUTILS_HPP_ */
