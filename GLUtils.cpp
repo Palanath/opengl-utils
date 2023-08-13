@@ -7,6 +7,8 @@
 
 #include "GLUtils.hpp"
 
+#include <stddef.h>
+
 GLuint createShader(GLenum shaderType, const char *source) {
 	GLuint res = glCreateShader(shaderType);
 	glShaderSource(res, 1, &source, nullptr);
@@ -97,4 +99,10 @@ void GLAPIENTRY glDebugCallback(GLenum source, GLenum type, GLuint id,
 		std::cerr << "Error: ";
 	std::cerr << "[type=" << type << ", severity=" << severity << "] "
 			<< message << std::endl;
+}
+
+unsigned queryMaxUniformBlockSize() {
+	GLint val;
+	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &val);
+	return val;
 }

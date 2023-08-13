@@ -82,4 +82,6 @@ GLFWwindow* initOpenGL(int, int, const char*, bool = true);
 void GLAPIENTRY glDebugCallback(GLenum, GLenum, GLuint, GLenum, GLsizei,
 	const GLchar*, const void*);
 
+unsigned queryMaxUniformBlockSize();
+
 #endif /* GLUTILS_HPP_ */
