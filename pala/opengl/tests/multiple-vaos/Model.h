@@ -42,9 +42,10 @@ public:
 	 * Draws this Model using the GL_TRIANGLES drawing mode.
 	 *
 	 * The number of vertices to draw is specified in the first argument.
-	 * The second offset specifies the offset, in vertices, of where to begin drawing.
+	 * The second parameter specifies the offset, in vertices, of where to begin drawing.
+	 * The third parameter is the number of instances to draw.
 	 */
-	void draw(unsigned, unsigned = 0);
+	void draw(unsigned, unsigned = 0, unsigned=1);
 };
 }  // namespace pala::opengl::tests::multiple_vaos
 

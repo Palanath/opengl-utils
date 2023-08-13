@@ -49,8 +49,8 @@ void Model::specifyAttribute(unsigned attribLayoutLoc, unsigned vboIndex,
 	glEnableVertexAttribArray(attribLayoutLoc);
 }
 
-void Model::draw(unsigned vertices, unsigned offset) {
+void Model::draw(unsigned vertices, unsigned offset, unsigned instances) {
 	glBindVertexArray(vao);
-	glDrawArrays(GL_TRIANGLES, offset, vertices);
+	glDrawArraysInstanced(GL_TRIANGLES, offset, vertices, instances);
 }
 }  // namespace pala::opengl::tests::multiple_vaos
