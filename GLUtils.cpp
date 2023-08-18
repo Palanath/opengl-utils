@@ -106,3 +106,21 @@ unsigned queryMaxUniformBlockSize() {
 	glGetIntegerv(GL_MAX_UNIFORM_BLOCK_SIZE, &val);
 	return val;
 }
+
+void setUniform(GLuint prog, const char *name, float first) {
+	glUniform1f(glGetUniformLocation(prog, name), first);
+}
+
+void setUniform(GLuint prog, const char *name, float first, float second) {
+	glUniform2f(glGetUniformLocation(prog, name), first, second);
+}
+
+void setUniform(GLuint prog, const char *name, float first, float second,
+		float third) {
+	glUniform3f(glGetUniformLocation(prog, name), first, second, third);
+}
+
+void setUniform(GLuint prog, const char *name, float first, float second,
+		float third, float fourth) {
+	glUniform4f(glGetUniformLocation(prog, name), first, second, third, fourth);
+}

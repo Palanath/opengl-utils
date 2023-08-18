@@ -13,6 +13,23 @@
 #include <iostream>
 
 /*
+ * Sets the value of the specified float uniform in the specified shader program.
+ */
+void setUniform(GLuint, const char*, float);
+/*
+ * Sets the value of the specified vec2 uniform in the specified shader program.
+ */
+void setUniform(GLuint, const char*, float, float);
+/*
+ * Sets the value of the specified vec3 uniform in the specified shader program.
+ */
+void setUniform(GLuint, const char*, float, float, float);
+/*
+ * Sets the value of the specified vec4 uniform in the specified shader program.
+ */
+void setUniform(GLuint, const char*, float, float, float, float);
+
+/*
  * Creates a shader with the specified type and source code, and compiles it.
  * Errors can be checked for with checkShadercompilationError(GLuint).
  */
