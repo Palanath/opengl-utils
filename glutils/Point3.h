@@ -16,6 +16,14 @@ public:
 	Point3();
 	Point3(float, float, float);
 	virtual ~Point3();
+
+	float getX() const;
+	float getY() const;
+	float getZ() const;
+	void setX(const float);
+	void setY(const float);
+	void setZ(const float);
+	void set(const float, const float, const float);
 };
 
 } /* namespace glutils */
