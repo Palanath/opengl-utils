@@ -6,9 +6,9 @@
  */
 
 #ifndef GLUTILS_CONTRACTS_TICKABLE_H_
-#define GLUTILS_CONTRACTS_TICKABLE_H_
+#define GLUTILS_TICKING_TICKABLE_H_
 
-namespace glutils::contracts {
+namespace glutils::ticking {
 
 class Tickable {
 public:
@@ -16,6 +16,6 @@ public:
 	virtual ~Tickable();
 };
 
-} /* namespace glutils::contracts */
+} /* namespace glutils::ticking */
 
 #endif /* GLUTILS_CONTRACTS_TICKABLE_H_ */
